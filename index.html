@@ -224,7 +224,7 @@
             </div>
         </div>
     </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.1.0/Tween.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.7.0/Tween.js"></script>
     <script>
         setTimeout(load, 3000);
 
@@ -249,7 +249,6 @@
                 let li = x.currentTarget.classList.remove('active')
             }
         }
-
         let aTags = document.querySelectorAll('nav.menu > ul >li>a')
 
         function animate(time) {
@@ -268,14 +267,18 @@
 
                 let currentTop = window.scrollY
                 let targetTop = top - 80
-                var coords = {y:currentTop};
-                var tween = new TWEEN.Tween(coords)
-                    .to({y:targetTop}, 1000)
-                    .easing(TWEEN.Easing.Quadratic.In)
-                    .onUpdate(function() {
-                        windows.scrollTo(0,coords.y)
+                const coords = {
+                    y: currentTop
+                }; // Start at (0, 0)
+                const tween = new TWEEN.Tween(coords) 
+                    .to({
+                        y: targetTop
+                    }, 1000) 
+                    .easing(TWEEN.Easing.Quadratic.InOut) 
+                    .onUpdate(() => { 
+                        window.scrollTo(0,coords.y);
                     })
-                    .start();
+                    .start(); 
             }
         }
     </script>
