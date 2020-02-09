@@ -81,7 +81,7 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div id="siteAbout" class="usercard">
+        <div data-x id="siteAbout" class="usercard">
             <div class="pictureAndText clearfix">
                 <div class="picture">
                     <img src="./img/avatar.jpg" width=299 height=347 alt="头像">
@@ -135,7 +135,7 @@
         李斌，初级前端工程师。有三只猫：分别叫kiki,奥利，小橘子<br>
         技能：HTML，原生js开发。玩游戏，花钱等等。喜欢吃的食物是炒饭和麻辣烫<br>
     </p>
-    <section id="siteSkills" class="skills">
+    <section data-x id="siteSkills" class="skills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -187,7 +187,7 @@
             </li>
         </ol>
     </section>
-    <section id="siteWorks" class="portfolio">
+    <section data-x id="siteWorks" class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -232,12 +232,39 @@
             siteWelcome.classList.remove('active');
         }
 
+        let specialTags = document.querySelectorAll('[data-x]')
+            let minIndex = 0
+            for(let i = 0;i<specialTags.length;i++){
+                specialTags[i].classList.add('offset')
+                }
+        setTimeout(function(){
+                    findClosest()
+                },3100)
         window.onscroll = function (xx) {
             if (window.scrollY > 0) {
                 topNavBar.classList.add('sticky')
             } else {
                 topNavBar.classList.remove('sticky')
             }
+            findClosest()
+        }
+        function findClosest(){
+            let specialTags = document.querySelectorAll('[data-x]')
+            let minIndex = 0
+            for(let i = 0;i<specialTags.length;i++){
+                if( Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)){
+                    minIndex = i
+                }
+            }
+                    specialTags[minIndex].classList.remove('offset')
+                    let id =specialTags[minIndex].id
+                    let a = document.querySelector('a[href="#'+id+'"]')
+                    let li = a.parentNode
+                    let brothersAndMe = li.parentNode.children
+                    for(let i =0;i<brothersAndMe.length;i++){
+                        brothersAndMe[i].classList.remove('highlight')
+                    }
+                    li.classList.add('highlight')
         }
         let liTags = document.querySelectorAll('nav.menu > ul > li')
         for (let i = 0; i < liTags.length; i++) {
