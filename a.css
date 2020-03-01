@@ -4,7 +4,13 @@ body {
     background: #EFEFEF;
 
 }
-
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
 a {
     color: inherit;
     text-decoration: none;
@@ -51,6 +57,24 @@ hr {
     100%{
         transform: translateY(0);
     }
+}
+.site-welcome {
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #888;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.site-welcome.active {
+    display: flex !important;
 }
 .clearfix::after {
     content: '';
@@ -370,6 +394,27 @@ section.portfolio>h2 {
 
 }
 
+section.message>h2 {
+    text-align: center;
+    color: #3d4451;
+    font-size: 34px;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 36px;
+}
+section.message >ol{
+    margin: auto;
+    max-width: 940px;
+    border-bottom: 1px solid #DDD;
+    border-top: 1px solid #ddd;
+    background: #f4f4f4;
+}
+section.message>ol>li{
+    padding: 16px ;
+    border-bottom: 1px solid #DDD;
+}
+
+
 section.skills>h3 {
     font-size: 14px;
     line-height: 1.1;
@@ -396,9 +441,6 @@ section.skills>ol>li:nth-child(even) {
 
     float: right;
 }
-
-section.skills>ol>li:nth-child(odd) {}
-
 section.skills .progressBar {
     height: 5px;
     background: #fae1e1;
